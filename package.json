@@ -1,5 +1,5 @@
 {
-  "name": "react-persian-datepicker",
+  "name": "react-persian-datepicker-fixed",
   "version": "3.0.3",
   "description": "Persian calendar and date picker components for React",
   "main": "lib/index.js",

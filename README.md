@@ -1,3 +1,7 @@
+# This Repo is Fixed version of [this repo](https://github.com/evandhq/react-persian-datepicker)
+
+Below are docs from the original repo:
+
 # React Persian Date Picker :calendar:
 
 [![gitcheese.com](https://s3.amazonaws.com/gitcheese-ui-master/images/badge.svg)](https://www.gitcheese.com/donate/users/6104558/repos/43522564)

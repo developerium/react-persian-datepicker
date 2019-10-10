@@ -114,6 +114,13 @@ export class Calendar extends Component {
     return (<MonthSelector styles={styles} selectedMonth={month}/>);
   }
 
+  handleOnKeyDown = event => {
+    const { bringBackFocus } = this.props;
+    if (event.key === 'Tab') {
+      bringBackFocus();
+    }
+  };
+
   renderDays() {
     const { month, selectedDay } = this.state;
     const { children, min, max, styles, outsideClickIgnoreClass } = this.props;
@@ -149,6 +156,7 @@ export class Calendar extends Component {
                   selected={selected}
                   isCurrentMonth={isCurrentMonth}
                   styles={styles}
+                  onKeyDown={this.handleOnKeyDown}
                 />
               );
             })

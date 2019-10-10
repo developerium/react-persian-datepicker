@@ -75,9 +75,7 @@ export default class DatePicker extends Component {
 
     if (momentValue) {
       const inputValue = momentValue.format(inputFormat);
-      this.setState({ inputValue, isOpen: false });
-    } else {
-      this.setOpen(false);
+      this.setState({ inputValue });
     }
   }
 
@@ -119,6 +117,12 @@ export default class DatePicker extends Component {
     }
   }
 
+  handleOnKeyDown = event => {
+    if (event.key === 'Tab') {
+      this.setOpen(false);
+    }
+  };
+
   renderInput() {
     let { isOpen, inputValue } = this.state;
 
@@ -143,10 +147,16 @@ export default class DatePicker extends Component {
           onChange={this.handleInputChange.bind(this) }
           onClick={this.handleInputClick.bind(this) }
           value={inputValue}
+          onKeyDown={this.handleOnKeyDown}
         />
       </div>
     );
   }
+
+  bringBackFocus = () => {
+    this.refs.input.focus();
+    this.setOpen(false);
+  };
 
   renderCalendar() {
     const { momentValue } = this.state;
@@ -164,6 +174,7 @@ export default class DatePicker extends Component {
           outsideClickIgnoreClass={outsideClickIgnoreClass}
           styles={calendarStyles}
           containerProps={calendarContainerProps}
+          bringBackFocus={this.bringBackFocus}
         >
           {
             TimePicker ? (

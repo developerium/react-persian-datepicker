@@ -21,6 +21,12 @@
   clear: both;
 }
 
+.dayPickerContainer {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
 /* Heading */
 .calendarContainer .heading {
   height: 42px;

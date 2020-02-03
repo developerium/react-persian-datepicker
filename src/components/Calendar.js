@@ -135,6 +135,8 @@ export class Calendar extends Component {
       this.lastRenderedMonth = month;
     }
 
+    const today = moment();
+
     return (
       <div>
         {children}
@@ -146,6 +148,7 @@ export class Calendar extends Component {
               const isCurrentMonth = day.format('jMM') === month.format('jMM');
               const disabled = (min ? day.isBefore(min) : false) || (max ? day.isAfter(max) : false);
               const selected = selectedDay ? selectedDay.isSame(day, 'day') : false;
+              const isToday = today.isSame(day, 'day');
 
               return (
                 <Day
@@ -157,6 +160,7 @@ export class Calendar extends Component {
                   isCurrentMonth={isCurrentMonth}
                   styles={styles}
                   onKeyDown={this.handleOnKeyDown}
+                  isToday={isToday}
                 />
               );
             })

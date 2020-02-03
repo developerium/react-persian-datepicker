@@ -38,11 +38,12 @@ export default class Day extends Component {
   }
 
   render() {
-    const { day, disabled, selected, isCurrentMonth, onClick, styles, ...rest } = this.props;
+    const { day, disabled, selected, isCurrentMonth, onClick, styles, isToday, ...rest } = this.props;
 
     const className = classnames(styles.dayWrapper, {
       [styles.selected]: selected,
-      [styles.currentMonth]: isCurrentMonth
+      [styles.currentMonth]: isCurrentMonth,
+      'current-date': isToday,
     });
 
     return (

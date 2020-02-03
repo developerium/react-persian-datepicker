@@ -133,7 +133,8 @@ export default class DatePicker extends Component {
     }
 
     const className = classnames(this.props.className, {
-      [outsideClickIgnoreClass]: isOpen
+      [outsideClickIgnoreClass]: isOpen,
+      'date-picker-input': true,
     });
 
     return (

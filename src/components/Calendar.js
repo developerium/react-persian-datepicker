@@ -35,11 +35,17 @@ export class Calendar extends Component {
     containerProps: {}
   };
 
-  state = {
-    month: this.props.defaultMonth || this.props.selectedDay || moment(this.props.min),
-    selectedDay: this.props.selectedDay || null,
-    mode: 'days'
-  };
+  constructor(params) {
+    super(params);
+
+    const { defaultMonth, selectedDay, min } = this.props;
+
+    this.state = {
+      month: defaultMonth || selectedDay || moment(min),
+      selectedDay: selectedDay || null,
+      mode: 'days'
+    };
+  }
 
   getChildContext() {
     return {
@@ -111,7 +117,8 @@ export class Calendar extends Component {
   renderMonthSelector() {
     const { month } = this.state;
     const { styles } = this.props;
-    return (<MonthSelector styles={styles} selectedMonth={month}/>);
+
+    return <MonthSelector styles={styles} selectedMonth={month}/>;
   }
 
   handleOnKeyDown = event => {

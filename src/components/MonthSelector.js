@@ -31,9 +31,13 @@ export default class MonthSelector extends Component {
     setMonth: PropTypes.func.isRequired
   };
 
-  state = {
-    year: this.props.selectedMonth
-  };
+  constructor(params) {
+    super(params);
+
+    this.state = {
+      year: this.props.selectedMonth || moment()
+    };
+  }
 
   nextYear = () => {
     this.setState({
@@ -48,9 +52,8 @@ export default class MonthSelector extends Component {
   };
 
   setYear = (newYear) => {
-    const current = Number(this.state.year.jYear());
-
-    const diff = newYear - current;
+    const currentYear = Number(this.state.year.jYear());
+    const diff = newYear - currentYear;
 
     this.setState({
       year: this.state.year.clone().add(diff, 'year')

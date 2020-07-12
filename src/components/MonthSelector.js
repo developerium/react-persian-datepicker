@@ -35,7 +35,7 @@ export default class MonthSelector extends Component {
     super(params);
 
     this.state = {
-      year: this.props.selectedMonth || moment()
+      year: this.props.selectedMonth,
     };
   }
 

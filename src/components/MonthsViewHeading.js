@@ -23,13 +23,12 @@ export default class MonthsViewHeading extends Component {
 
   render() {
     const { year, styles } = this.props;
-    console.log('year', year);
 
     return (
         <div className={styles.heading}>
         <span className={styles.title}>
           <input
-            value={`${Number(year.format('jYYYY'))}`}
+            value={`${Number(year.locale('en').format('jYYYY'))}`}
             onChange={this.handleYearChange}
             style={styles.yearInputStyle || yearInputStyle}
           />

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { leftArrow, rightArrow } from '../utils/assets';
 
-const inputStyle = { textAlign: 'center' };
+const yearInputStyle = { textAlign: 'center' };
 
 export default class MonthsViewHeading extends Component {
   static propTypes = {
@@ -23,6 +23,7 @@ export default class MonthsViewHeading extends Component {
 
   render() {
     const { year, styles } = this.props;
+    console.log('year', year);
 
     return (
         <div className={styles.heading}>
@@ -30,7 +31,7 @@ export default class MonthsViewHeading extends Component {
           <input
             value={`${Number(year.format('jYYYY'))}`}
             onChange={this.handleYearChange}
-            style={inputStyle}
+            style={styles.yearInputStyle || yearInputStyle}
           />
         </span>
           <button

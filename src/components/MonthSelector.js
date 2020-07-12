@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import moment from 'moment-jalali';
 import classnames from 'classnames';
 import MonthsViewHeading from './MonthsViewHeading';
-import { persianNumber } from '../utils/persian';
-import { leftArrow, rightArrow } from '../utils/assets';
 
 // List of months
 const months = [
@@ -37,17 +35,27 @@ export default class MonthSelector extends Component {
     year: this.props.selectedMonth
   };
 
-  nextYear() {
+  nextYear = () => {
     this.setState({
       year: this.state.year.clone().add(1, 'year')
     });
-  }
+  };
 
-  prevYear() {
+  prevYear = () => {
     this.setState({
       year: this.state.year.clone().subtract(1, 'year')
     });
-  }
+  };
+
+  setYear = (newYear) => {
+    const current = Number(this.state.year.jYear());
+
+    const diff = newYear - current;
+
+    this.setState({
+      year: this.state.year.clone().add(diff, 'year')
+    });
+  };
 
   handleClick(key) {
     const { setMonth, setCalendarMode } = this.context;
@@ -64,8 +72,9 @@ export default class MonthSelector extends Component {
         <MonthsViewHeading
           styles={styles}
           year={year}
-          onNextYear={this.nextYear.bind(this) }
-          onPrevYear={this.prevYear.bind(this) }
+          onNextYear={this.nextYear}
+          onPrevYear={this.prevYear}
+          setYear={this.setYear}
         />
         <div className={styles.monthsList}>
           {
@@ -88,6 +97,7 @@ export default class MonthSelector extends Component {
             })
           }
         </div>
-      </div>);
+      </div>
+    );
   }
 }

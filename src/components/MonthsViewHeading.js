@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { persianNumber } from '../utils/persian';
 import { leftArrow, rightArrow } from '../utils/assets';
+
+const inputStyle = { textAlign: 'center' };
 
 export default class MonthsViewHeading extends Component {
   static propTypes = {
@@ -14,13 +15,23 @@ export default class MonthsViewHeading extends Component {
     styles: PropTypes.object
   };
 
+  handleYearChange = event => {
+    const newYear = event.target.value;
+
+    this.props.setYear(Number(newYear));
+  };
+
   render() {
     const { year, styles } = this.props;
 
     return (
         <div className={styles.heading}>
         <span className={styles.title}>
-          { persianNumber(year.format('jYYYY')) }
+          <input
+            value={`${Number(year.format('jYYYY'))}`}
+            onChange={this.handleYearChange}
+            style={inputStyle}
+          />
         </span>
           <button
             type="button"
